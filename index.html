@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4skm</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:#fff;
+position:relative;
+}
+
+/* TŁO */
+.background{
+position:absolute;inset:0;
+background:url("type shit.jpg") center/cover;
+filter:brightness(0.5);
+z-index:-2;
+}
+
+/* CLICK SCREEN */
+.overlay{
+position:absolute;inset:0;
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.5);
+z-index:10;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+transition:1s;
+}
+
+.overlay h1{
+font-size:40px;
+letter-spacing:3px;
+}
+
+/* KARTA */
+.card{
+text-align:center;
+padding:30px;
+width:90%;
+max-width:400px;
+background:rgba(255,255,255,0.08);
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+z-index:2;
+}
+
+.profile-img{
+width:130px;
+height:130px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #fff;
+margin-bottom:10px;
+}
+
+.socials{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:15px;
+}
+
+.socials a{
+color:#fff;
+text-decoration:none;
+padding:12px;
+background:rgba(255,255,255,0.12);
+border-radius:12px;
+transition:0.3s;
+}
+
+.socials a:hover{
+background:rgba(255,255,255,0.25);
+transform:scale(1.03);
+}
+
+/* ŚNIEG */
+#snow{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<!-- ŚNIEG -->
+<canvas id="snow"></canvas>
+
+<!-- CLICK SCREEN -->
+<div class="overlay" id="start">
+<h1>CLICK</h1>
+</div>
+
+<div class="card">
+
+<img src="rukia.jpg" class="profile-img">
+
+<h1>♰ 4skm ♰</h1>
+<p>Make Europe Great Again!</p>
+
+<div class="socials">
+<a href="https://instagram.com/czteryskm" target="_blank">Instagram</a>
+<a href="https://tiktok.com/@czteryskm" target="_blank">TikTok</a>
+<a href="https://github.com/skmik" target="_blank">GitHub</a>
+<a href="https://twitch.tv/4skkm" target="_blank">Twitch</a>
+<a href="#" id="discord">Discord - 4skm</a>
+<a href="https://guns.lol/gabron5000 ">My femboy twin ahahiahgag❤️</a>
+<a href="music.html">🎵 fav nutki</a>
+</div>
+
+</div>
+
+<!-- MUZYKA -->
+<audio id="music" loop>
+<source src="Fokus - Czas.mp4" type="audio/mpeg">
+</audio>
+
+<script>
+/* DISCORD COPY */
+document.getElementById("discord").addEventListener("click",(e)=>{
+e.preventDefault();
+navigator.clipboard.writeText("4skm");
+alert("Skopiowano 4skm");
+});
+
+/* CLICK START */
+const start = document.getElementById("start");
+const music = document.getElementById("music");
+
+start.addEventListener("click", () => {
+start.style.opacity = "0";
+setTimeout(()=>start.style.display="none",1000);
+
+music.play();
+});
+
+/* ŚNIEG */
+const canvas = document.getElementById('snow');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const snowflakes = [];
+
+for (let i = 0; i < 120; i++) {
+snowflakes.push({
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+r: Math.random() * 2.2 + 0.8,
+s: Math.random() * 0.4 + 0.15,
+d: Math.random() * 0.2 - 0.1,
+o: Math.random() * 0.35 + 0.2
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let f of snowflakes){
+ctx.beginPath();
+ctx.fillStyle = `rgba(255,255,255,${f.o})`;
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+ctx.fill();
+}
+
+move();
+}
+
+function move(){
+for(let f of snowflakes){
+f.y += f.s;
+f.x += Math.sin(f.y * 0.005) * 0.15 + f.d;
+
+if(f.y > canvas.height){
+f.y = -10;
+f.x = Math.random() * canvas.width;
+}
+}
+}
+
+function loop(){
+draw();
+requestAnimationFrame(loop);
+}
+loop();
+
+window.addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>

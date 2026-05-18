@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music - 4skm</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+.back{
+position: absolute;
+top: 20px;
+left: 20px;
+
+padding: 10px 14px;
+border-radius: 12px;
+text-decoration: none;
+color: white;
+
+background: rgba(255,255,255,0.12);
+border: 1px solid rgba(255,255,255,0.15);
+
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+
+transition: 0.3s;
+z-index: 10;
+}
+
+.back:hover{
+background: rgba(255,255,255,0.25);
+transform: scale(1.05);
+}
+body{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+padding:40px;
+color:#fff;
+overflow:hidden;
+position:relative;
+}
+
+/* TŁO jak index */
+.background{
+position:absolute;
+inset:0;
+background:url("type shit.jpg") center/cover;
+filter:brightness(0.4);
+z-index:-2;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+backdrop-filter:blur(5px);
+background:rgba(0,0,0,0.25);
+z-index:-1;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+/* KARTY */
+.song{
+width:90%;
+max-width:500px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.15);
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+button{
+padding:8px 12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+color:white;
+}
+
+.play{background: grey;}
+.stop{background: grey;}
+
+button:hover{
+transform:scale(1.05);
+
+.back{
+position:absolute;
+top:20px;
+left:20px;
+padding:10px 14px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.12);
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+transition:0.3s;
+}
+
+.back:hover{
+background:rgba(255,255,255,0.25);
+transform:scale(1.05);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<h1>🎵fav musik</h1>
+<p>Be careful it can be loud!</p><br>
+
+<div class="song">
+<span>Paktofonika - Czas</span>
+<div>
+<button class="play" onclick="play('m1')">▶</button>
+<button class="stop" onclick="stop('m1')">❚❚</button>
+</div>
+</div>
+
+<div class="song">
+<span>Adrianne Lenker - anything</span>
+<div>
+<button class="play" onclick="play('m2')">▶</button>
+<button class="stop" onclick="stop('m2')">❚❚</button>
+</div>
+</div>
+
+<div class="song">
+<span>S0rrow - Would U Love Me</span>
+<div>
+<button class="play" onclick="play('m3')">▶</button>
+<button class="stop" onclick="stop('m3')">❚❚</button>
+</div>
+</div>
+
+<div class="song">
+<span>Wifiskeleton -  Nope your too late i already died</span>
+<div>
+<button class="play" onclick="play('m4')">▶</button>
+<button class="stop" onclick="stop('m4')">❚❚</button>
+</div>
+</div>
+
+<!-- AUDIO (NIE VIDEO = brak obrazów!) -->
+<audio id="m1" src="Fokus - Czas.mp4"></audio>
+<audio id="m2" src="Adrianne Lenker - anything.mp4"></audio>
+<audio id="m3" src="would u love me.mp4"></audio>
+<audio id="m4" src="Nope your too late i already died.mp4"></audio>
+
+
+<script>
+const tracks = ["m1","m2","m3"];
+
+/* PLAY -> stopuje resztę */
+function play(id){
+
+  tracks.forEach(t=>{
+    let audio = document.getElementById(t);
+    if(t !== id){
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+
+  document.getElementById(id).play();
+}
+
+/* STOP */
+function stop(id){
+  let a = document.getElementById(id);
+  a.pause();
+  a.currentTime = 0;
+}
+</script>
+<a href="index.html" class="back">Powrót</a>
+</body>
+</html>
