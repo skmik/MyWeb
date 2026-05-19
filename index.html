@@ -8,7 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
 
 body{
 height:100vh;
@@ -22,7 +27,8 @@ position:relative;
 
 /* TŁO */
 .background{
-position:absolute;inset:0;
+position:absolute;
+inset:0;
 background:url("type shit.jpg") center/cover;
 filter:brightness(0.5);
 z-index:-2;
@@ -30,7 +36,8 @@ z-index:-2;
 
 /* CLICK SCREEN */
 .overlay{
-position:absolute;inset:0;
+position:absolute;
+inset:0;
 backdrop-filter:blur(10px);
 background:rgba(0,0,0,0.5);
 z-index:10;
@@ -66,6 +73,12 @@ border-radius:50%;
 object-fit:cover;
 border:3px solid #fff;
 margin-bottom:10px;
+}
+
+.counter{
+margin-top:10px;
+font-size:14px;
+opacity:0.8;
 }
 
 .socials{
@@ -121,13 +134,16 @@ z-index:1;
 <h1>♰ 4skm ♰</h1>
 <p>Make Europe Great Again!</p>
 
+<!-- LICZNIK -->
+<p class="counter" id="views">𓁺  0</p>
+
 <div class="socials">
 <a href="https://instagram.com/czteryskm" target="_blank">Instagram</a>
 <a href="https://tiktok.com/@czteryskm" target="_blank">TikTok</a>
 <a href="https://github.com/skmik" target="_blank">GitHub</a>
 <a href="https://twitch.tv/4skkm" target="_blank">Twitch</a>
 <a href="#" id="discord">Discord - 4skm</a>
-<a href="https://guns.lol/gabron5000 ">My femboy twin ahahiahgag❤️</a>
+<a href="https://guns.lol/gabron5000">My femboy twin ahahiahgag❤️</a>
 <a href="music.html">🎵 fav nutki</a>
 </div>
 
@@ -139,11 +155,12 @@ z-index:1;
 </audio>
 
 <script>
+
 /* DISCORD COPY */
 document.getElementById("discord").addEventListener("click",(e)=>{
 e.preventDefault();
 navigator.clipboard.writeText("4skm");
-alert("Skopiowano 4skm");
+alert("Copied 4skm");
 });
 
 /* CLICK START */
@@ -156,6 +173,19 @@ setTimeout(()=>start.style.display="none",1000);
 
 music.play();
 });
+
+/* LICZNIK ODWIEDZIN */
+let views = localStorage.getItem("views");
+views = 321
+if(!views){
+views = 0;
+}
+views++;
+
+localStorage.setItem("views", views);
+
+document.getElementById("views").textContent =
+`${views} 👁`;
 
 /* ŚNIEG */
 const canvas = document.getElementById('snow');
@@ -212,6 +242,7 @@ window.addEventListener("resize",()=>{
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 });
+
 </script>
 
 </body>
